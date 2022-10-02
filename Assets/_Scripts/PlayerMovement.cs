@@ -6,6 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     private float _moveSpeed = 2f;
     private Vector2 _moveInput;
+    private Rigidbody2D _rb;
+
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
 
     private void FixedUpdate()
     {
