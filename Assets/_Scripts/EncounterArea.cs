@@ -33,8 +33,7 @@ public class EncounterArea : MonoBehaviour
 
             if(_encounterStarted)
             {
-                _playerReference.InEncounter = true;
-                SceneManager.LoadScene(EncounterScene.name, LoadSceneMode.Additive);
+                StartEncounter();
             }
         }
 
@@ -63,6 +62,8 @@ public class EncounterArea : MonoBehaviour
     // This is so that encounters only trigger when the player is moving.
     private void CheckEncounterPossibleFromPlayer()
     {
+        if (_encounterPossible) 
+            return;
         if (_playerReference.EncounterAreaMovementTimer >= 2f)
         {
             Debug.Log("Encounter imminent!");
@@ -82,5 +83,12 @@ public class EncounterArea : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void StartEncounter()
+    {
+        _playerReference.InEncounter = true;
+        _encounterPossible = false;
+        SceneManager.LoadScene(EncounterScene.name);
     }
 }

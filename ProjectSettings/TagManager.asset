@@ -50,6 +50,9 @@ TagManager:
   - name: Tilemap_Foreground2
     uniqueID: 140623123
     locked: 0
+  - name: EncounterTiles
+    uniqueID: 2237111257
+    locked: 0
   - name: Player
     uniqueID: 4202941661
     locked: 0
