@@ -3,20 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EncounterArea : MonoBehaviour
 {
     public Object EncounterScene;
     private PlayerMovement _playerReference;
     public bool EncounterStarted { get { return _encounterStarted; } private set { } }
-    [SerializeField] private bool _encounterStarted;
-
-    [SerializeField] private bool _encounterPossible;
-    [SerializeField] private bool _playerInEncounterArea => _playerReference.InEncounterArea;
+    private bool _encounterStarted;
+    private bool _encounterPossible;
+    private bool _playerInEncounterArea => _playerReference.InEncounterArea;
 
     [SerializeField]
     private float _encounterChancePercentage;
-
     private void Start()
     {
         _playerReference = FindObjectOfType<PlayerMovement>();
@@ -31,6 +30,12 @@ public class EncounterArea : MonoBehaviour
         if (_encounterPossible)
         {
             _encounterStarted = CalculateEncounterChance();
+
+            if(_encounterStarted)
+            {
+                _playerReference.InEncounter = true;
+                SceneManager.LoadScene(EncounterScene.name, LoadSceneMode.Additive);
+            }
         }
 
     }

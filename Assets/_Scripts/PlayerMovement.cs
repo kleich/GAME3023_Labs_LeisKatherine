@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     public bool InEncounterArea { get { return _inEncounterArea; } set { _inEncounterArea = value; } }
     private bool _inEncounterArea;
+    public bool InEncounter { get { return _inEncounter; } set { _inEncounter = value; } }
+    private bool _inEncounter;
     public float EncounterAreaMovementTimer { get { return _encounterAreaMovementTimer; } set { _encounterAreaMovementTimer = value; } }
     private float _encounterAreaMovementTimer;
 
@@ -21,7 +23,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        if(!_inEncounter)
+            Move();
     }
 
     private void Move()
