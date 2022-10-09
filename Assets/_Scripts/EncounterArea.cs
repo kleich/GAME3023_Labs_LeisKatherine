@@ -7,36 +7,28 @@ using UnityEngine.SceneManagement;
 
 public class EncounterArea : MonoBehaviour
 {
-    public Object EncounterScene;
+    private SceneControl _sceneControl;
+    public Object _encounterScene;
     private PlayerMovement _playerReference;
-    public bool EncounterStarted { get { return _encounterStarted; } private set { } }
-    private bool _encounterStarted;
-    private bool _encounterPossible;
-    private bool _playerInEncounterArea => _playerReference.InEncounterArea;
+    private bool _encounterStarted => _playerReference.InEncounter;
+    private float _encounterCheckInterval = 2f;
 
     [SerializeField]
     private float _encounterChancePercentage;
     private void Start()
     {
+        _sceneControl = FindObjectOfType<SceneControl>();
         _playerReference = FindObjectOfType<PlayerMovement>();
     }
     void Update()
     {
-        if (_playerInEncounterArea)
+        if (_playerReference.InEncounterArea && _playerReference.IsMoving)
         {
-            CheckEncounterPossibleFromPlayer();
-        }
-
-        if (_encounterPossible)
-        {
-            _encounterStarted = CalculateEncounterChance();
-
-            if(_encounterStarted)
+            if(CalculateEncounterChance() && !_encounterStarted)
             {
                 StartEncounter();
             }
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,7 +37,6 @@ public class EncounterArea : MonoBehaviour
         {
             _playerReference.InEncounterArea = true;
             Debug.Log("Player entered Encounter Area! Get ready for a fight (maybe)!");
-            _encounterPossible = true;
         }
     }
 
@@ -55,31 +46,22 @@ public class EncounterArea : MonoBehaviour
         {
             _playerReference.InEncounterArea = false;
             Debug.Log("Player exited Encounter Area! Safe for now...");
-            _encounterPossible = false;
         }
     }
 
-    // This is so that encounters only trigger when the player is moving.
-    private void CheckEncounterPossibleFromPlayer()
+    private bool CalculateEncounterChance()
     {
-        if (_encounterPossible) 
-            return;
-        if (_playerReference.EncounterAreaMovementTimer >= 2f)
+        if(_playerReference.EncounterAreaMovementTimer > _encounterCheckInterval)
         {
             Debug.Log("Encounter imminent!");
             _playerReference.EncounterAreaMovementTimer = 0;
-            _encounterPossible = true;
-            return;
-        }
-        _encounterPossible = false;
-    }
-    private bool CalculateEncounterChance()
-    {
-        float random_number = Random.Range(0f, 100f);
-        if (random_number <= _encounterChancePercentage)
-        {
-            Debug.Log("*** Encounter started! ***");
-            return true;
+
+            float random_number = Random.Range(0f, 100f);
+            if (random_number <= _encounterChancePercentage)
+            {
+                Debug.Log("*** Encounter started! ***");
+                return true;
+            }
         }
 
         return false;
@@ -88,7 +70,6 @@ public class EncounterArea : MonoBehaviour
     private void StartEncounter()
     {
         _playerReference.InEncounter = true;
-        _encounterPossible = false;
-        SceneManager.LoadScene(EncounterScene.name);
+        _sceneControl.LoadSceneAdditive(_encounterScene);
     }
 }

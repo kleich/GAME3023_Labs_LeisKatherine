@@ -740,6 +740,50 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &620615558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 620615560}
+  - component: {fileID: 620615559}
+  m_Layer: 0
+  m_Name: SceneControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &620615559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620615558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc90a3ac50b08684bbf79737445408db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &620615560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620615558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.073425, y: 3.4946132, z: -4.3712473}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &745525292
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +854,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1861786660}
-  m_PlaneDistance: 10
+  m_PlaneDistance: 20
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -37587,8 +37631,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c29c57556e6e2e46a21a70008a0f11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EncounterScene: {fileID: 102900000, guid: 034d0c48c59554e46889cc1445a3f4d9, type: 3}
-  _encounterChancePercentage: 75
+  _encounterScene: {fileID: 102900000, guid: 034d0c48c59554e46889cc1445a3f4d9, type: 3}
+  _encounterChancePercentage: 25
 --- !u!19719996 &1267322003
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -38337,7 +38381,7 @@ MonoBehaviour:
   m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 75f2831c00000000ddcc83fa13bd6108bd4d7f16b335bb13d99b5785
+  m_ApplyToSortingLayers: 75f2831c00000000ddcc83fa13bd6108bd4d7f16d99b57858b1609a805c88e6d
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -43261,7 +43305,7 @@ GameObject:
   - component: {fileID: 1861786659}
   - component: {fileID: 1861786662}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: PlayerCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43515,11 +43559,11 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.9150943, g: 0.28920433, b: 0.72487277, a: 1}
+  m_Color: {r: 0.8207547, g: 0.59233713, b: 0.7517985, a: 1}
   m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 75f2831c00000000ddcc83fa13bd6108bd4d7f16b335bb13d99b5785
+  m_ApplyToSortingLayers: 75f2831c00000000ddcc83fa13bd6108bd4d7f16d99b57858b1609a805c88e6d
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -43646,11 +43690,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1506788921, guid: 1ca75af4f62c25244a4ecc1ee0a1e116, type: 3}
       propertyPath: m_ApplyToSortingLayers.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1506788921, guid: 1ca75af4f62c25244a4ecc1ee0a1e116, type: 3}
       propertyPath: m_ApplyToSortingLayers.Array.data[5]
       value: -2057856039
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506788921, guid: 1ca75af4f62c25244a4ecc1ee0a1e116, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[6]
+      value: -1475799413
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506788921, guid: 1ca75af4f62c25244a4ecc1ee0a1e116, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[7]
+      value: 1838073861
       objectReference: {fileID: 0}
     - target: {fileID: 7229197045255044845, guid: 1ca75af4f62c25244a4ecc1ee0a1e116, type: 3}
       propertyPath: m_RootOrder

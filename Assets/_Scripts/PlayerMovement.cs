@@ -10,11 +10,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _moveInput;
     private Rigidbody2D _rb;
     public bool InEncounterArea { get { return _inEncounterArea; } set { _inEncounterArea = value; } }
-    private bool _inEncounterArea;
+    private bool _inEncounterArea = false;
     public bool InEncounter { get { return _inEncounter; } set { _inEncounter = value; } }
-    private bool _inEncounter;
+    private bool _inEncounter = false;
+    public bool IsMoving {  get { return _isMoving; } set { _isMoving = value; } }
+    private bool _isMoving = false;
     public float EncounterAreaMovementTimer { get { return _encounterAreaMovementTimer; } set { _encounterAreaMovementTimer = value; } }
-    private float _encounterAreaMovementTimer;
+    private float _encounterAreaMovementTimer = 0f;
 
     private void Start()
     {
@@ -34,8 +36,15 @@ public class PlayerMovement : MonoBehaviour
         transform.position += new Vector3(_moveInput.x, _moveInput.y) * _moveSpeed * Time.deltaTime;
 
         if (_inEncounterArea)
+        {
             if(_moveInput.Abs().x > 0 || _moveInput.Abs().y > 0)
+            {
                 _encounterAreaMovementTimer += Time.deltaTime;
+                _isMoving = true;
+            }
+            else
+                _isMoving = false;
+        }
     }
 
 }
