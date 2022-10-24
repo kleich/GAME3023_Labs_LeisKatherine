@@ -19,7 +19,19 @@ public class SceneControl : MonoBehaviour
     {
         SceneManager.LoadScene(build_index);
     }
-
+    // Load/Save game data 
+    public void LoadGameData()
+    {
+        GameDataManager.Load();
+    }
+    public void SaveGameData()
+    {
+        GameDataManager.Save();
+    }
+    public void DeleteSavedData()
+    {
+        GameDataManager.Delete();
+    }
     // Load Additive
     public void LoadSceneAdditive(Object scene)
     {
