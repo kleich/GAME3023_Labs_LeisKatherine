@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -17,11 +18,14 @@ public class PlayerMovement : MonoBehaviour
     private bool _isMoving = false;
     public float EncounterAreaMovementTimer { get { return _encounterAreaMovementTimer; } set { _encounterAreaMovementTimer = value; } }
     private float _encounterAreaMovementTimer = 0f;
+    private Vector2 _startPosition = new Vector2(4.3f, -1.5f);
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        SetPlayerStartPosition();
     }
+
 
     private void FixedUpdate()
     {
@@ -44,6 +48,17 @@ public class PlayerMovement : MonoBehaviour
             }
             else
                 _isMoving = false;
+        }
+    }
+    private void SetPlayerStartPosition()
+    {
+        if (GameDataManager.WasDataLoaded)
+        {
+            transform.position = GameDataManager.PlayerPosition;
+        }
+        else
+        {
+            transform.position = _startPosition;
         }
     }
 
