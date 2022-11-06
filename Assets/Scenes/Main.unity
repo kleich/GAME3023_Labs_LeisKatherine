@@ -44363,6 +44363,22 @@ PrefabInstance:
       propertyPath: m_ApplyToSortingLayers.Array.data[7]
       value: 1838073861
       objectReference: {fileID: 0}
+    - target: {fileID: 7229197045255044844, guid: 1ca75af4f62c25244a4ecc1ee0a1e116, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229197045255044844, guid: 1ca75af4f62c25244a4ecc1ee0a1e116, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229197045255044844, guid: 1ca75af4f62c25244a4ecc1ee0a1e116, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2001148075, guid: 9c82eebcc8b31b74280fb71c1c7a3ef2, type: 3}
+    - target: {fileID: 7229197045255044844, guid: 1ca75af4f62c25244a4ecc1ee0a1e116, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7229197045255044845, guid: 1ca75af4f62c25244a4ecc1ee0a1e116, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -44472,3 +44488,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryPanel: {fileID: 2089178980}
+--- !u!95 &7229197046488827063
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084586612}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce736af3f96374348a6eb74e963c1680, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
