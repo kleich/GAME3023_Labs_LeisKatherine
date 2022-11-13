@@ -1029,6 +1029,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _danceButtonsPanel: {fileID: 473114604}
+  _encounterButtonsPanel: {fileID: 1771947736}
+  _encounterText: {fileID: 2098797077}
 --- !u!4 &578147244
 Transform:
   m_ObjectHideFlags: 0

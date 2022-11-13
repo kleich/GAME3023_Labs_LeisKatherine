@@ -39,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
             ConfigureAnimation();
         }
     }
-
     private void Move()
     {
         _moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -95,4 +94,3 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetInteger("Direction", _moveDirection);
     }
 }
-
