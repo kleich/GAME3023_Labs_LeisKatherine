@@ -538,6 +538,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _encounterCamera: {fileID: 1091699422}
+  _abilityButtons:
+  - {fileID: 1603288644}
+  - {fileID: 1396695631}
+  - {fileID: 479829766}
+  - {fileID: 949922400}
 --- !u!4 &372649562
 Transform:
   m_ObjectHideFlags: 0
@@ -1636,6 +1641,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0d7aa287593e649af40965e4e4ebfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slottedDanceAbilities:
+  - {fileID: 11400000, guid: 1b6e7a273cb7c26458705fb034df2337, type: 2}
+  - {fileID: 11400000, guid: d6610555d1dc784419c641708f4b4388, type: 2}
+  - {fileID: 11400000, guid: eb3e4898ef519ec45ac2389ed7f2b7c8, type: 2}
+  - {fileID: 0}
 --- !u!1 &844688152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2914,6 +2924,7 @@ GameObject:
   - component: {fileID: 1426811317}
   - component: {fileID: 1426811316}
   - component: {fileID: 1426811318}
+  - component: {fileID: 1426811319}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -3009,6 +3020,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1426811319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426811315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8430f11541671c744b2f92dab15b1dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1518868947
 GameObject:
   m_ObjectHideFlags: 0

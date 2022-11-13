@@ -172,6 +172,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: alienYellow_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 90
+        width: 67
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6b8e5283c7d71e4fb61dd04f29bf217
+      internalID: 1853019321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: alienYellow_3
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 90
+        width: 67
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfa8f4d40ec7c2f468648f8b26d2be64
+      internalID: 1380967603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -184,6 +226,8 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       alienYellow_1: 914649559
+      alienYellow_2: 1853019321
+      alienYellow_3: 1380967603
       alienYellow_0: -351943818
   spritePackingTag: 
   pSDRemoveMatte: 0

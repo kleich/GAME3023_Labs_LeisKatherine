@@ -9,25 +9,27 @@ public class EncounterPlayer : MonoBehaviour
     public int DanceDelaySeconds { get { return _danceDelaySeconds; } private set { } }
     private int _danceDelaySeconds;
 
+    private List<DanceAbility> _knownDanceAbilities = DanceAbilityManager.PlayerDanceAbilities;
+    public DanceAbility[] SlottedDanceAbilities { get { return _slottedDanceAbilities; } private set { } }
+    [SerializeField] private DanceAbility[] _slottedDanceAbilities = new DanceAbility[4];
+
     private Animator _animator;
 
-    public delegate void PerformBattleAction();
-    public static event PerformBattleAction OnPerformDance;
     private void OnEnable()
     {
-        OnPerformDance += PerformBattleActionSequence;
         EncounterEventManager.OnDanceOnePressed += DanceOne;
         EncounterEventManager.OnDanceTwoPressed += DanceTwo;
         EncounterEventManager.OnDanceThreePressed += DanceThree;
         EncounterEventManager.OnDanceFourPressed += DanceFour;
+        EncounterEventManager.OnDanceSequence += DanceSequence;
     }
     private void OnDisable()
     {
-        OnPerformDance -= PerformBattleActionSequence;
         EncounterEventManager.OnDanceOnePressed -= DanceOne;
         EncounterEventManager.OnDanceTwoPressed -= DanceTwo;
         EncounterEventManager.OnDanceThreePressed -= DanceThree;
         EncounterEventManager.OnDanceFourPressed -= DanceFour;
+        EncounterEventManager.OnDanceSequence -= DanceSequence;
     }
     private void Start()
     {
@@ -36,55 +38,47 @@ public class EncounterPlayer : MonoBehaviour
         _animator = GetComponent<Animator>();
 
     }
-    private void PerformBattleActionSequence()
+    public void SetCanDance(bool b)
+    {
+        _canPerformDance = b;
+    }
+    private void DanceSequence()
     {
         if(_canPerformDance)
         {
             _canPerformDance = false;
-            StartCoroutine(DanceDelayTimer(_danceDelaySeconds));
-            
         }
-    }
-    IEnumerator DanceDelayTimer(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        _canPerformDance = true;
-        Debug.Log("Can perform next action now!");
     }
     private void DanceOne()
     {
-        if(_canPerformDance)
+        if(_canPerformDance && (_slottedDanceAbilities[0] != null))
         {
-            Debug.Log("Performing Dance #1");
-            OnPerformDance();
-            _animator.SetTrigger("DanceOneTrigger");
+            Debug.Log("Performing " + _slottedDanceAbilities[0].Name);
+            _animator.SetTrigger(_slottedDanceAbilities[0].Name + "Trigger");
         }
     }
     private void DanceTwo()
     {
-        if (_canPerformDance)
+        if (_canPerformDance && (_slottedDanceAbilities[1] != null))
         {
-            Debug.Log("Performing Dance #2");
-            OnPerformDance();
-            _animator.SetTrigger("DanceTwoTrigger");
+            Debug.Log("Performing " + _slottedDanceAbilities[1].Name);
+            _animator.SetTrigger(_slottedDanceAbilities[1].Name + "Trigger");
         }
     }
     private void DanceThree()
     {
-        if (_canPerformDance)
+        if (_canPerformDance && (_slottedDanceAbilities[2] != null))
         {
-            Debug.Log("Performing Dance #3");
-            OnPerformDance();
-            _animator.SetTrigger("DanceThreeTrigger");
+            Debug.Log("Performing " + _slottedDanceAbilities[2].Name);
+            _animator.SetTrigger(_slottedDanceAbilities[2].Name + "Trigger");
         }
     }
     private void DanceFour()
     {
-        if (_canPerformDance)
+        if (_canPerformDance && (_slottedDanceAbilities[3] != null))
         {
-            Debug.Log("Performing Dance #4");
-            OnPerformDance();
-            _animator.SetTrigger("DanceFourTrigger");
+            Debug.Log("Performing " + _slottedDanceAbilities[3].Name);
+            _animator.SetTrigger(_slottedDanceAbilities[3].Name + "Trigger");
         }
     }
 }

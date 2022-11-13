@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc9c296ebc6a3946be61a1a94f29429, type: 3}
+  m_Name: Shimmy
+  m_EditorClassIdentifier: 
+  _name: Shimmy
+  _description: Sliiiiide to the left
+  _power: 4
+  _cost: 2
+  _associatedClip: {fileID: 7400000, guid: 08901398047aa404cadc2b0e972d29f6, type: 2}

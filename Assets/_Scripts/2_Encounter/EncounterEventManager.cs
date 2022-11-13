@@ -14,18 +14,30 @@ public class EncounterEventManager : MonoBehaviour
     public delegate void DanceFourPressed();
     public static event DanceFourPressed OnDanceFourPressed;
 
+    public delegate void DanceSequence();
+    public static event DanceSequence OnDanceSequence;
+
+    public delegate void EnemyDanceTurn();
+    public static event EnemyDanceTurn OnEnemyDanceTurn;
+
+
+
+
     public GameObject _danceButtonsPanel;
     public GameObject _encounterButtonsPanel;
     public TMP_Text _encounterText;
     private EncounterPlayer _playerReference;
+    private EncounterEnemy _enemyReference;
+
     private void OnEnable()
     {
         _playerReference = FindObjectOfType<EncounterPlayer>();
-        EncounterPlayer.OnPerformDance += PerformingDance;
+        _enemyReference = FindObjectOfType<EncounterEnemy>();
+        OnDanceSequence += StartDanceSequence;
     }
     private void OnDisable()
     {
-        EncounterPlayer.OnPerformDance -= PerformingDance;
+        OnDanceSequence -= StartDanceSequence;
     }
     private void Start()
     {
@@ -38,17 +50,35 @@ public class EncounterEventManager : MonoBehaviour
             _encounterText.text = "Performing dance!";
             _danceButtonsPanel.SetActive(false);
             _encounterButtonsPanel.SetActive(false);
-            StartCoroutine(DanceDelay(_playerReference.DanceDelaySeconds));
+            StartCoroutine(PlayerDanceDelay(_playerReference.DanceDelaySeconds));
         }
     }
 
-    private IEnumerator DanceDelay(float seconds)
+    private void StartDanceSequence()
+    {
+        _danceButtonsPanel.SetActive(false);
+        _encounterButtonsPanel.SetActive(false);
+        _encounterText.text = "Nice moves, alien!";
+        StartCoroutine(PlayerDanceDelay(_playerReference.DanceDelaySeconds));
+    }
+
+    private IEnumerator PlayerDanceDelay(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        _danceButtonsPanel.SetActive(true);
-        _encounterButtonsPanel.SetActive(true);
-        _encounterText.text = "Select a dance to perform!";
+        _encounterText.text = "Enemy's turn!";
+        StartCoroutine(EnemyDanceDelay(_enemyReference.DanceDelaySeconds));
     }
+
+    private IEnumerator EnemyDanceDelay(float seconds)
+    {
+        OnEnemyDanceTurn();
+        Debug.Log("Start enemy dance.");
+        yield return new WaitForSeconds(seconds);
+        _encounterButtonsPanel.SetActive(true);
+        _encounterText.text = "Your turn! Waiting for dance selection...";
+        _playerReference.SetCanDance(true);
+    }
+
     public void ReadyDances()
     {
         _danceButtonsPanel.SetActive(true);
@@ -61,17 +91,21 @@ public class EncounterEventManager : MonoBehaviour
     public void DanceOneButtonPressed()
     {
         OnDanceOnePressed();
+        OnDanceSequence();
     }
     public void DanceTwoButtonPressed()
     {
         OnDanceTwoPressed();
+        OnDanceSequence();
     }
     public void DanceThreeButtonPressed()
     {
         OnDanceThreePressed();
+        OnDanceSequence();
     }
     public void DanceFourButtonPressed()
     {
         OnDanceFourPressed();
+        OnDanceSequence();
     }
 }
