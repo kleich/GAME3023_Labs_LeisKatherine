@@ -72,7 +72,6 @@ public class EncounterEventManager : MonoBehaviour
     private IEnumerator EnemyDanceDelay(float seconds)
     {
         OnEnemyDanceTurn();
-        Debug.Log("Start enemy dance.");
         yield return new WaitForSeconds(seconds);
         _encounterButtonsPanel.SetActive(true);
         _encounterText.text = "Your turn! Waiting for dance selection...";

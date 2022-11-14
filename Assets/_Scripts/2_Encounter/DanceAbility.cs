@@ -15,6 +15,4 @@ public class DanceAbility : ScriptableObject
     [SerializeField] private float _power;
     public float Cost { get { return _cost; } private set { } }
     [SerializeField] private float _cost;
-    public AnimationClip AssociatedClip { get { return _associatedClip; } private set { } }
-    [SerializeField] private AnimationClip _associatedClip;
 }

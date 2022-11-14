@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfc9c296ebc6a3946be61a1a94f29429, type: 3}
-  m_Name: Shuffle
+  m_Name: Squirm
   m_EditorClassIdentifier: 
-  _name: Shuffle
-  _description: Like shuffling a deck of cards
-  _power: 20
-  _cost: 5
+  _name: Squirm
+  _description: Squirmy squirmin'
+  _power: 10
+  _cost: 2
