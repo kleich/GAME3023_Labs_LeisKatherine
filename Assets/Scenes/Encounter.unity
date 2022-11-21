@@ -1642,7 +1642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slottedDanceAbilities:
-  - {fileID: 11400000, guid: 1b6e7a273cb7c26458705fb034df2337, type: 2}
+  - {fileID: 11400000, guid: eb3e4898ef519ec45ac2389ed7f2b7c8, type: 2}
   - {fileID: 11400000, guid: d6610555d1dc784419c641708f4b4388, type: 2}
   - {fileID: 11400000, guid: eb3e4898ef519ec45ac2389ed7f2b7c8, type: 2}
   - {fileID: 0}

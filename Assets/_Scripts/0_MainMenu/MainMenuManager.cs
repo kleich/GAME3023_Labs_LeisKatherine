@@ -11,5 +11,6 @@ public class MainMenuManager : MonoBehaviour
     {
         _continueButton.GetComponent<Button>().interactable = GameDataManager.DoesCharacterDataExist();
         DanceAbilityManager.LoadDancesFromResources();
+        EnemyTypeManager.LoadEnemiesFromResources();
     }
 }
