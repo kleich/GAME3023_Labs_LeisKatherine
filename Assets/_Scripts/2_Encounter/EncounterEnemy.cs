@@ -36,7 +36,10 @@ public class EncounterEnemy : MonoBehaviour
 
     private void ConfigureEnemy()
     {
-        _enemyInScene = EnemyTypeManager.PossibleEnemies.First();
+        Debug.Assert(EnemyTypeManager.PossibleEnemies.Count > 0); // Must be at least 1 enemy type!
+
+        _enemyInScene = EnemyTypeManager.PossibleEnemies[UnityEngine.Random.Range(0, EnemyTypeManager.PossibleEnemies.Count)]; // Pick a random enemy to encounter
+
         _spriteRenderer.color = _enemyInScene.Hue;
         _currentEnergy = _enemyInScene.MaxEnergy;
         _energyBar.maxValue = _currentEnergy;
@@ -71,15 +74,24 @@ public class EncounterEnemy : MonoBehaviour
                 return;
             }
 
-            // energy is 50% or higher, use the highest cost move we can
+            // energy is 50% or higher, either pick a random move to use or use the highest cost move available
             if (_currentEnergy > (_enemyInScene.MaxEnergy * 0.5f))
             {
-                _encounterText.text = "Big dance move incoming!";
-                foreach (var dance in _enemyInScene.DanceMoves)
+                var result = UnityEngine.Random.Range(0, 7); // Weighted a bit toward using the highest cost move
+                if(result < 2)
                 {
-                    if (dance.Cost > dance_to_use.Cost)
+                    _encounterText.text = "Spin the wheel!";
+                    dance_to_use = _enemyInScene.DanceMoves[UnityEngine.Random.Range(0, _enemyInScene.DanceMoves.Count)];
+                }
+                else
+                {
+                    _encounterText.text = "Big dance move incoming!";
+                    foreach (var dance in _enemyInScene.DanceMoves)
                     {
-                        dance_to_use = dance;
+                        if (dance.Cost > dance_to_use.Cost)
+                        {
+                            dance_to_use = dance;
+                        }
                     }
                 }
             }

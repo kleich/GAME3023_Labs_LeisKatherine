@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e125d9ed3af96249bc5b087efa73dd1, type: 3}
-  m_Name: Yellow
+  m_Name: Blue
   m_EditorClassIdentifier: 
-  _name: Yellow Jelly
-  _hue: {r: 1, g: 1, b: 1, a: 0}
-  _description: Yellow as a bumble bee, with the same amount of sting.
+  _name: Blue Jelly
+  _hue: {r: 0.18396229, g: 0.5464533, b: 1, a: 1}
+  _description: Blueberry flavoured!
   _speed: 10
-  _energy: 100
+  _energy: 50
   _danceMoves:
   - {fileID: 11400000, guid: c08d5c5eb6cf7524b93afe76f51b6d38, type: 2}
-  - {fileID: 11400000, guid: c979473af30bd704086a6cc00b000565, type: 2}
-  - {fileID: 11400000, guid: d6610555d1dc784419c641708f4b4388, type: 2}
-  - {fileID: 11400000, guid: 8de742819e65f8f459532dd1052b6f8f, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
