@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class EncounterEnemy : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     [SerializeField] private Enemy _enemyInScene;
+    [SerializeField] private TMP_Text _encounterText;
+    [SerializeField] private Slider _energyBar;
     private float _currentEnergy;
     public float DanceDelaySeconds { get { return _danceDelaySeconds; } private set { } }
     private float _danceDelaySeconds;
@@ -35,6 +39,15 @@ public class EncounterEnemy : MonoBehaviour
         _enemyInScene = EnemyTypeManager.PossibleEnemies.First();
         _spriteRenderer.color = _enemyInScene.Hue;
         _currentEnergy = _enemyInScene.MaxEnergy;
+        _energyBar.maxValue = _currentEnergy;
+        _energyBar.value = _currentEnergy;
+    }
+
+    private void SetEnergyAfterUsingDanceMove(float value)
+    {
+        _currentEnergy -= value;
+        var energy = _currentEnergy / 1;
+        _energyBar.value = energy;
     }
     private void PerformDance()
     {
@@ -52,16 +65,16 @@ public class EncounterEnemy : MonoBehaviour
 
             if (_enemyInScene.DanceMoves.Count == 1) // Only 1 dance move, use it.
             {
+                SetEnergyAfterUsingDanceMove(dance_to_use.Cost);
                 _animator.SetTrigger(dance_to_use.Name + "Trigger");
-                Debug.Log("Enemy only has 1 move! Using it...");
-                Debug.Log("Enemy performing " + dance_to_use.Name);
+                _encounterText.text = $"Enemy only has 1 possible move! \nEnemy used {dance_to_use.Name}";
                 return;
             }
 
             // energy is 50% or higher, use the highest cost move we can
             if (_currentEnergy > (_enemyInScene.MaxEnergy * 0.5f))
             {
-                Debug.Log("Big dance move incoming!");
+                _encounterText.text = "Big dance move incoming!";
                 foreach (var dance in _enemyInScene.DanceMoves)
                 {
                     if (dance.Cost > dance_to_use.Cost)
@@ -74,7 +87,7 @@ public class EncounterEnemy : MonoBehaviour
             // energy is less than 50%, start conserving it!
             else if (_currentEnergy < (_enemyInScene.MaxEnergy * 0.5f))
             {
-                Debug.Log("Energy saving mode, activate!");
+                _encounterText.text = "Energy saving mode, activate!";
                 foreach (var dance in _enemyInScene.DanceMoves)
                 {
                     if (dance.Cost < dance_to_use.Cost)
@@ -85,14 +98,15 @@ public class EncounterEnemy : MonoBehaviour
             }
             if(_currentEnergy >= dance_to_use.Cost)
             {
+                _encounterText.text += $"\nEnemy used {dance_to_use.Name}! Slick!";
                 _animator.SetTrigger(dance_to_use.Name + "Trigger");
-                Debug.Log("Enemy performing " + dance_to_use.Name);
-                _currentEnergy -= dance_to_use.Cost;
+                SetEnergyAfterUsingDanceMove(dance_to_use.Cost);
             }
-            else
-            {
-                Debug.Log("Enemy has no energy left!");
-            }
+        }
+        else
+        {
+            _encounterText.text = "Enemy has no energy left!";
+
         }
     }
 }

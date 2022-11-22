@@ -16,7 +16,7 @@ MonoBehaviour:
   _hue: {r: 1, g: 0.43867922, b: 0.81851834, a: 1}
   _description: Very pink. And pretty.
   _speed: 10
-  _energy: 100
+  _energy: 20
   _danceMoves:
   - {fileID: 11400000, guid: 8de742819e65f8f459532dd1052b6f8f, type: 2}
   - {fileID: 11400000, guid: eb3e4898ef519ec45ac2389ed7f2b7c8, type: 2}

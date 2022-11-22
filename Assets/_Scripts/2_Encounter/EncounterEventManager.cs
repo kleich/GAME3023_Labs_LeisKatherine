@@ -74,7 +74,7 @@ public class EncounterEventManager : MonoBehaviour
         OnEnemyDanceTurn();
         yield return new WaitForSeconds(seconds);
         _encounterButtonsPanel.SetActive(true);
-        _encounterText.text = "Your turn! Waiting for dance selection...";
+        _encounterText.text = "Your turn!";
         _playerReference.SetCanDance(true);
     }
 
