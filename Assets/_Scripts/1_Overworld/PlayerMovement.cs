@@ -19,7 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public float EncounterAreaMovementTimer { get { return _encounterAreaMovementTimer; } set { _encounterAreaMovementTimer = value; } }
     private float _encounterAreaMovementTimer = 0f;
     private Vector2 _startPosition = new Vector2(4.3f, -1.5f);
-    
+
+    public delegate void PlayerIsMoving();
+    public static event PlayerIsMoving OnPlayerMovement;
+
     private Animator _animator;
     private int _moveDirection; // 0 = Up, 2 = Down, 1 = Left/Right 
 
@@ -33,7 +36,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!_inEncounter)
+        if (_moveInput.Abs().x > 0 || _moveInput.Abs().y > 0)
+            OnPlayerMovement();
+
+        if (!_inEncounter)
         {
             Move();
             ConfigureAnimation();
