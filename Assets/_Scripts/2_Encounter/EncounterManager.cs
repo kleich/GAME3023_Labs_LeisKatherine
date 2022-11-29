@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class EncounterManager : MonoBehaviour
@@ -22,6 +23,16 @@ public class EncounterManager : MonoBehaviour
         _playerMovementReference = FindObjectOfType<PlayerMovement>();
         _encounterPlayerReference = FindObjectOfType<EncounterPlayer>();
         ConfigureAbilityButtons();
+    }
+    private void OnEnable()
+    {
+        var eventsystems = FindObjectsOfType<EventSystem>();
+        eventsystems[0].gameObject.SetActive(false);
+    }
+    private void OnDisable()
+    {
+        var eventsystems = FindObjectsOfType<EventSystem>();
+        eventsystems[0].gameObject.SetActive(true);
     }
 
     public void CloseEncounter()

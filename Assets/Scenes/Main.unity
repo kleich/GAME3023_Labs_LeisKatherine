@@ -41453,12 +41453,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6270d0bc48e3d4f4d8de4fa2f4098eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clipToPlay: {fileID: 0}
-  _grassStepClip: {fileID: 8300000, guid: 9afe1b9ca464a7342bf6a3218249f640, type: 3}
-  _tallGrassStepClip: {fileID: 8300000, guid: 46f4ba632369d0f4d8aeec78dedb826f, type: 3}
-  _pathStepClip: {fileID: 8300000, guid: 61a69a98b722ece43890acba649e7e47, type: 3}
-  _footstepSurfaceType: 0
-  _isPlaying: 0
+  _grassStepClip:
+  - {fileID: 8300000, guid: 9afe1b9ca464a7342bf6a3218249f640, type: 3}
+  - {fileID: 8300000, guid: 9caee6a2d7c65a1429395fc36ed6754c, type: 3}
+  - {fileID: 8300000, guid: f4c93341379ed544eb36337e2cfca361, type: 3}
+  - {fileID: 8300000, guid: aec3d387932c0c54d90e1643c0d4e90e, type: 3}
+  _tallGrassStepClip:
+  - {fileID: 8300000, guid: 46f4ba632369d0f4d8aeec78dedb826f, type: 3}
+  - {fileID: 8300000, guid: 11bb3b7c59506a241a44fc885d3f9d3b, type: 3}
+  - {fileID: 8300000, guid: fb1c3e5d81a0029428ce165bc4530dfe, type: 3}
+  - {fileID: 8300000, guid: c9a3efd5c1233b5448fa0bbd2726bf4e, type: 3}
+  - {fileID: 8300000, guid: c1fb48d56c0784f4f8d14fb0399c7a19, type: 3}
+  - {fileID: 8300000, guid: 32ff0c22545ec7b478b869e3f2fb3c36, type: 3}
+  - {fileID: 8300000, guid: 0e2ab8a34058a2242b1df1151193fc1f, type: 3}
+  _pathStepClip:
+  - {fileID: 8300000, guid: 61a69a98b722ece43890acba649e7e47, type: 3}
+  - {fileID: 8300000, guid: ae8d5d50d95915840b31ba3f15434ffb, type: 3}
+  - {fileID: 8300000, guid: 2a31c4ac53a2ece479d5c8cdf3e7d920, type: 3}
+  - {fileID: 8300000, guid: 7139cd2ac3f65b344ae418f8c4eaadae, type: 3}
 --- !u!4 &901202172
 Transform:
   m_ObjectHideFlags: 0

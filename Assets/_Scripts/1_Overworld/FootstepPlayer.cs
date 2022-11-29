@@ -12,13 +12,12 @@ public enum FootstepSurfaceType
 public class FootstepPlayer : MonoBehaviour
 {
     private AudioSource _audioSource;
-    [SerializeField] private AudioClip _clipToPlay;
-    [SerializeField] private AudioClip _grassStepClip;
-    [SerializeField] private AudioClip _tallGrassStepClip;
-    [SerializeField] private AudioClip _pathStepClip;
-    [SerializeField] private FootstepSurfaceType _footstepSurfaceType;
-    [SerializeField] private bool _isPlaying = false;
-    private bool _typeChangedRecently = false;
+    private List<AudioClip> _clipToPlay = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> _grassStepClip = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> _tallGrassStepClip = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> _pathStepClip = new List<AudioClip>();
+    private FootstepSurfaceType _footstepSurfaceType;
+    private bool _isPlaying = false;
  
     private void OnEnable()
     {
@@ -41,37 +40,39 @@ public class FootstepPlayer : MonoBehaviour
 
     public void PlayFootstepSound()
     {
-        switch (_footstepSurfaceType)
+        if (!_isPlaying)
         {
-            case FootstepSurfaceType.GRASS:
-                _clipToPlay = _grassStepClip;
-                break;
-            case FootstepSurfaceType.ENCOUNTER_GRASS:
-                _clipToPlay = _tallGrassStepClip;
-                break;
-            case FootstepSurfaceType.PATH:
-                _clipToPlay = _pathStepClip;
-                break;
-            default:
-                _clipToPlay = null;
-                break;
+           switch (_footstepSurfaceType)
+            {
+                case FootstepSurfaceType.GRASS:
+                    StartCoroutine(PlayFootstepOne(_grassStepClip));
+                    break;
+                case FootstepSurfaceType.ENCOUNTER_GRASS:
+                    StartCoroutine(PlayFootstepOne(_tallGrassStepClip));
+                    break;
+                case FootstepSurfaceType.PATH:
+                    StartCoroutine(PlayFootstepOne(_pathStepClip));
+                    break;
+                default:
+                    break;
+            }
+
         }
-        if(!_isPlaying)
-            StartCoroutine(PlayFootstepOne());
     }
 
-    private IEnumerator PlayFootstepOne()
+    private IEnumerator PlayFootstepOne(List<AudioClip> clips)
     {
         _isPlaying = true;
-        _audioSource.clip = _clipToPlay;
+        _audioSource.clip = clips[Random.Range(0, clips.Count)];
         _audioSource.Play();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         _isPlaying = false;
     }
 
-    private IEnumerator TypeChangeCooldown()
+    public void StopAllFootsteps()
     {
-        yield return new WaitForSeconds(0.5f);
-        _typeChangedRecently = false;
+        StopAllCoroutines();
+        _isPlaying = false;
+        _audioSource.Stop();
     }
 }
