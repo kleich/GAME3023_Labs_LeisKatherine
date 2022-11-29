@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (!_inEncounter)
         {
             if (_moveInput.Abs().x > 0 || _moveInput.Abs().y > 0)

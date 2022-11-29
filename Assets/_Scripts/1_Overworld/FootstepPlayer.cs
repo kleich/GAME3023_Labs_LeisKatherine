@@ -12,7 +12,6 @@ public enum FootstepSurfaceType
 public class FootstepPlayer : MonoBehaviour
 {
     private AudioSource _audioSource;
-    private List<AudioClip> _clipToPlay = new List<AudioClip>();
     [SerializeField] private List<AudioClip> _grassStepClip = new List<AudioClip>();
     [SerializeField] private List<AudioClip> _tallGrassStepClip = new List<AudioClip>();
     [SerializeField] private List<AudioClip> _pathStepClip = new List<AudioClip>();
@@ -45,13 +44,13 @@ public class FootstepPlayer : MonoBehaviour
            switch (_footstepSurfaceType)
             {
                 case FootstepSurfaceType.GRASS:
-                    StartCoroutine(PlayFootstepOne(_grassStepClip));
+                    StartCoroutine(PlayFootstepCoroutine(_grassStepClip));
                     break;
                 case FootstepSurfaceType.ENCOUNTER_GRASS:
-                    StartCoroutine(PlayFootstepOne(_tallGrassStepClip));
+                    StartCoroutine(PlayFootstepCoroutine(_tallGrassStepClip));
                     break;
                 case FootstepSurfaceType.PATH:
-                    StartCoroutine(PlayFootstepOne(_pathStepClip));
+                    StartCoroutine(PlayFootstepCoroutine(_pathStepClip));
                     break;
                 default:
                     break;
@@ -60,7 +59,7 @@ public class FootstepPlayer : MonoBehaviour
         }
     }
 
-    private IEnumerator PlayFootstepOne(List<AudioClip> clips)
+    private IEnumerator PlayFootstepCoroutine(List<AudioClip> clips)
     {
         _isPlaying = true;
         _audioSource.clip = clips[Random.Range(0, clips.Count)];

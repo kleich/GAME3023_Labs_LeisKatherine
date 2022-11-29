@@ -45164,7 +45164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _encounterScene: {fileID: 102900000, guid: 034d0c48c59554e46889cc1445a3f4d9, type: 3}
-  _encounterChancePercentage: 50
+  _encounterChancePercentage: 75
 --- !u!19719996 &1267322003
 TilemapCollider2D:
   m_ObjectHideFlags: 0

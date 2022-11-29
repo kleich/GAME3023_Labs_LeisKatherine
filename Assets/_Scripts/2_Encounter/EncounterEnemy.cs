@@ -14,9 +14,12 @@ public class EncounterEnemy : MonoBehaviour
     [SerializeField] private Enemy _enemyInScene;
     [SerializeField] private TMP_Text _encounterText;
     [SerializeField] private Slider _energyBar;
+    public float CurrentEnergy { get { return _currentEnergy; } private set { } }
     private float _currentEnergy;
     public float DanceDelaySeconds { get { return _danceDelaySeconds; } private set { } }
     private float _danceDelaySeconds;
+    public int DanceMovesUsed { get { return _danceMovesUsed; } private set { } }
+    private int _danceMovesUsed;
     
     private void OnEnable()
     {
@@ -28,6 +31,7 @@ public class EncounterEnemy : MonoBehaviour
     }
     private void Start()
     {
+        _danceMovesUsed = 0;
         _danceDelaySeconds = 2f;
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -68,10 +72,14 @@ public class EncounterEnemy : MonoBehaviour
 
             if (_enemyInScene.DanceMoves.Count == 1) // Only 1 dance move, use it.
             {
-                SetEnergyAfterUsingDanceMove(dance_to_use.Cost);
-                _animator.SetTrigger(dance_to_use.Name + "Trigger");
-                _encounterText.text = $"Enemy only has 1 possible move! \nEnemy used {dance_to_use.Name}";
-                return;
+                if(_currentEnergy >= dance_to_use.Cost)
+                {
+                    SetEnergyAfterUsingDanceMove(dance_to_use.Cost);
+                    _animator.SetTrigger(dance_to_use.Name + "Trigger");
+                    _encounterText.text = $"Enemy only has 1 possible move! \nEnemy used {dance_to_use.Name}";
+                    _danceMovesUsed++;
+                    return;
+                }
             }
 
             // energy is 50% or higher, either pick a random move to use or use the highest cost move available
@@ -113,12 +121,12 @@ public class EncounterEnemy : MonoBehaviour
                 _encounterText.text += $"\nEnemy used {dance_to_use.Name}! Slick!";
                 _animator.SetTrigger(dance_to_use.Name + "Trigger");
                 SetEnergyAfterUsingDanceMove(dance_to_use.Cost);
+                _danceMovesUsed++;
             }
         }
         else
         {
             _encounterText.text = "Enemy has no energy left!";
-
         }
     }
 }

@@ -16,7 +16,10 @@ public class EncounterPlayer : MonoBehaviour
     [SerializeField] private DanceAbility[] _slottedDanceAbilities = new DanceAbility[4];
     [SerializeField] private TMP_Text _encounterText;
     [SerializeField] private Slider _energyBar;
+    public float CurrentEnergy { get { return _currentEnergy; } private set { } }
     private float _currentEnergy;
+    public int DanceMovesUsed { get { return _danceMovesUsed; } private set { } }
+    private int _danceMovesUsed;
 
     private Animator _animator;
 
@@ -38,6 +41,7 @@ public class EncounterPlayer : MonoBehaviour
     }
     private void Start()
     {
+        _danceMovesUsed = 0;
         _danceDelaySeconds = 2;
         _canPerformDance = true;
         _animator = GetComponent<Animator>();
@@ -57,7 +61,7 @@ public class EncounterPlayer : MonoBehaviour
     }
     private void DanceSequence()
     {
-        if(_currentEnergy > 0)
+        if(_currentEnergy == 0)
         {
             _canPerformDance = false;
         }
@@ -74,6 +78,7 @@ public class EncounterPlayer : MonoBehaviour
             SetEnergyAfterUsingDanceMove(_slottedDanceAbilities[0].Cost);
             _encounterText.text = $"Performing {_slottedDanceAbilities[0].Name}! Nice moves!";
             _animator.SetTrigger(_slottedDanceAbilities[0].Name + "Trigger");
+            _danceMovesUsed++;
         }
     }
     private void DanceTwo()
@@ -83,6 +88,7 @@ public class EncounterPlayer : MonoBehaviour
             SetEnergyAfterUsingDanceMove(_slottedDanceAbilities[1].Cost);
             _encounterText.text = $"Performing {_slottedDanceAbilities[1].Name}! Nice moves!";
             _animator.SetTrigger(_slottedDanceAbilities[1].Name + "Trigger");
+            _danceMovesUsed++;
         }
     }
     private void DanceThree()
@@ -92,6 +98,7 @@ public class EncounterPlayer : MonoBehaviour
             SetEnergyAfterUsingDanceMove(_slottedDanceAbilities[2].Cost);
             _encounterText.text = $"Performing {_slottedDanceAbilities[2].Name}! Nice moves!";
             _animator.SetTrigger(_slottedDanceAbilities[2].Name + "Trigger");
+            _danceMovesUsed++;
         }
     }
     private void DanceFour()
@@ -101,6 +108,7 @@ public class EncounterPlayer : MonoBehaviour
             SetEnergyAfterUsingDanceMove(_slottedDanceAbilities[3].Cost);
             _encounterText.text = $"Performing {_slottedDanceAbilities[3].Name}! Nice moves!";
             _animator.SetTrigger(_slottedDanceAbilities[3].Name + "Trigger");
+            _danceMovesUsed++;
         }
     }
 }

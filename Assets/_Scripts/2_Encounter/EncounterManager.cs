@@ -24,17 +24,6 @@ public class EncounterManager : MonoBehaviour
         _encounterPlayerReference = FindObjectOfType<EncounterPlayer>();
         ConfigureAbilityButtons();
     }
-    private void OnEnable()
-    {
-        var eventsystems = FindObjectsOfType<EventSystem>();
-        eventsystems[0].gameObject.SetActive(false);
-    }
-    private void OnDisable()
-    {
-        var eventsystems = FindObjectsOfType<EventSystem>();
-        eventsystems[0].gameObject.SetActive(true);
-    }
-
     public void CloseEncounter()
     {
         ToggleCamera(_mainSceneCamera, true);

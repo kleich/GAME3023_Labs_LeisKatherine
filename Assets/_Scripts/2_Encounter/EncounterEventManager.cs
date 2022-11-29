@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EncounterEventManager : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class EncounterEventManager : MonoBehaviour
     public delegate void EnemyDanceTurn();
     public static event EnemyDanceTurn OnEnemyDanceTurn;
 
-
+    public delegate void ChangeBattleMusic();
+    public static event ChangeBattleMusic OnChangeBattleMusic;
 
 
     public GameObject _danceButtonsPanel;
@@ -76,6 +78,7 @@ public class EncounterEventManager : MonoBehaviour
         _encounterButtonsPanel.SetActive(true);
         _encounterText.text = "Your turn!";
         _playerReference.SetCanDance(true);
+        OnChangeBattleMusic();
     }
 
     public void ReadyDances()
@@ -107,4 +110,10 @@ public class EncounterEventManager : MonoBehaviour
         OnDanceFourPressed();
         OnDanceSequence();
     }
+
+    public bool IsPlayerWinning()
+    {
+        return (_playerReference.CurrentEnergy >= _enemyReference.CurrentEnergy);
+    }
+
 }

@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour
             Instance = this;
             SceneManager.sceneLoaded += Instance.OnSceneLoaded;
             SceneManager.sceneUnloaded += Instance.OnSceneUnloaded;
+            EncounterEventManager.OnChangeBattleMusic += ChangeBattleMusic;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -113,18 +114,35 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneUnloaded(Scene new_scene)
     {
-        //_transitionMusicSource.Play();
-
         if (new_scene.name == "Encounter")
         {
             CrossFadeTo(TrackID.Overworld);
         }
     }
 
+    private void ChangeBattleMusic()
+    {
+        var event_manager = FindObjectOfType<EncounterEventManager>();
+        
+        if(event_manager)
+        {
+            if(event_manager.IsPlayerWinning())
+            {
+                if(!(_musicSourceA.clip == _bgmList[(int)TrackID.Encounter_Player]) && !(_musicSourceB.clip == _bgmList[(int)TrackID.Encounter_Player]))
+                    CrossFadeTo(TrackID.Encounter_Player, 8);
+            }
+            else
+            {
+                if (!(_musicSourceA.clip == _bgmList[(int)TrackID.Encounter_Enemy]) && !(_musicSourceB.clip == _bgmList[(int)TrackID.Encounter_Enemy]))
+                    CrossFadeTo(TrackID.Encounter_Enemy, 8);
+            }
+        }
+    }
 
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= Instance.OnSceneLoaded;
         SceneManager.sceneUnloaded -= Instance.OnSceneUnloaded;
+        EncounterEventManager.OnChangeBattleMusic -= ChangeBattleMusic;
     }
 }
