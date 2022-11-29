@@ -19,15 +19,7 @@ public class FootstepSurface : MonoBehaviour
         if(collision.gameObject.name == "FootstepTypeTrigger" && !_typeChangedRecently)
         {
             _typeChangedRecently = true;
-            Debug.Log("Set new surface type to " + _type);
             StartCoroutine(ChangePathType());
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "FootstepTypeTrigger" && !_typeChangedRecently)
-        {
-
         }
     }
     private IEnumerator ChangePathType()
